@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cafetería POS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2 style="color:#fff; font-size:1.1em; margin:0 0 1em 0;">Cafetería</h2>
+        </div>
+        <button class="nav-btn" onclick="mostrarSeccion('caja')">Caja</button>
+        <button class="nav-btn" onclick="mostrarSeccion('cocina')">Cocina</button>
+        <button class="nav-btn" onclick="mostrarSeccion('barista')">Barista</button>
+        <button class="nav-btn" onclick="mostrarSeccion('admin')">Administrador</button>
+    </div>
+    <main>
+        <!-- Sección Caja -->
+        <section id="caja" class="seccion">
+            <div class="panel-funcional">
+                <div class="productos-panel">
+                    <div class="productos-header">
+                        Selecciona productos
+                        <select id="filtroCategoria" onchange="filtrarPorCategoria(this.value)">
+                            <option value="">Todas las categorías</option>
+                        </select>
+                    </div>
+                    <table id="tablaProductos" class="productos-table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Estado</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productosTableBody">
+                            <!-- Productos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="ticket-panel">
+                    <div class="ticket-header">Recibo</div>
+                    <select id="tipoPedido">
+                        <option value="cocina">Cocina</option>
+                        <option value="cafe">Café</option>
+                    </select>
+                    <form id="formPedido">
+                        <input type="text" name="cliente" placeholder="Cliente (opcional)">
+                        <input type="text" name="mesa" placeholder="Mesa (opcional)">
+                        <input type="number" name="descuento" placeholder="Descuento" min="0" step="0.01">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Cant</th>
+                                    <th>Precio</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ticketBody"></tbody>
+                        </table>
+                    </form>
+                    <div class="ticket-total">
+                        <span>Precio total:</span>
+                        <span id="precioTotal">Bs. 0.00</span>
+                    </div>
+                    <button id="enviarPedidoBtn">Enviar Pedido</button>
+                    <div id="mensajePedido"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Sección Cocina -->
+        <section id="cocina" class="seccion" style="display:none">
+            <h2>Pedidos de Cocina</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Productos</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaCocina"></tbody>
+            </table>
+        </section>
+        <!-- Sección Barista -->
+        <section id="barista" class="seccion" style="display:none">
+            <h2>Pedidos de Café</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Productos</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaBarista"></tbody>
+            </table>
+        </section>
+        <!-- Sección Administrador -->
+        <section id="admin" class="seccion" style="display:none">
+            <h2>Reporte Diario</h2>
+            <label>Fecha:
+                <input type="date" id="fechaReporte" value="">
+                <button onclick="cargarReporte()">Ver Reporte</button>
+            </label>
+            <div id="reporteDiario"></div>
+            <h2>Agregar Producto</h2>
+            <form id="formAgregarProducto" class="form-admin">
+                <input type="text" name="nombre" placeholder="Nombre del producto" required>
+                <input type="text" name="descripcion" placeholder="Descripción">
+                <input type="number" name="precio" placeholder="Precio" step="0.01" required>
+                <input type="text" name="categoria" placeholder="Categoría" required>
+                <button type="submit">Agregar</button>
+            </form>
+            <div id="mensajeAdmin"></div>
+        </section>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
